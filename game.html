@@ -1,0 +1,254 @@
+<!--background-color:rgb(0,177,227)-->
+
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Game</title>
+  <style>
+  body{
+   background-color:rgb(0,177,227);
+   cursor: url(illum-circle-plex.cur), pointer;
+  }
+  </style>
+  </head>
+<body onload="startGame(906,906,906,906,906,906)">
+<script language="JavaScript">
+function startGame(p1,p2,p3,p4,p5,p6){
+<!--yamato21, esminets31, avianosets1, esminets4, yamato22, esminets32-->
+<!-- document.getElementById("score").innerHTML = t1--> 
+ var t1 = 906
+ if (p1>-200){
+ t1=p1-(Math.round(Math.random()*(3-1))+1)
+ document.getElementById("yamato21").style.top=t1+"px"
+  }
+  if (p1<=-200){
+   document.getElementById("yamato21").style.top="906px"
+   document.images[0].src="yamato2.gif"
+ }
+ var t2 = 906
+ if (p2>-200){
+ t2=p2-(Math.round(Math.random()*(4-1))+1)
+ document.getElementById("esminets31").style.top=t2+"px"
+ }
+ if (p2<=-200){
+   document.getElementById("esminets31").style.top="906px"
+   document.images[1].src="esminets3.gif"
+ }
+ var t3 = 906
+ if (p3>-200){
+   t3=p3-(Math.round(Math.random()*(2-1))+1)
+   document.getElementById("avianosets1").style.top=t3+"px"
+ }
+ if (p3<=-200){
+ document.getElementById("avianosets1").style.top="906px"
+ document.images[2].src="avianosets1.gif"
+ }
+ var t4 = 906
+ if (p4>-200){
+  t4=p4-(Math.round(Math.random()*(4-1))+1)
+  document.getElementById("esminets4").style.top=t4+"px"
+ }
+ if (p4<=-200){
+   document.getElementById("esminets4").style.top="906px"
+   document.images[3].src="esminets4.gif"
+ }
+ var t5 = 906
+ if (p5>-200){
+ t5=p5-(Math.round(Math.random()*(3-1))+1)
+ document.getElementById("yamato22").style.top=t5+"px"
+ }
+ if (p5<=-200){
+   document.getElementById("yamato22").style.top="906px"
+   document.images[4].src="yamato2.gif"
+ }
+ var t6 = 906
+ if (p6>-200){
+  t6=p6-(Math.round(Math.random()*(4-1))+1)
+  document.getElementById("esminets32").style.top=t6+"px"
+ }
+ if (p6<=-200){
+   document.getElementById("esminets32").style.top="906px"
+   document.images[5].src="esminets3.gif"
+ }
+ var timer = setTimeout(function(){startGame(t1,t2,t3,t4,t5,t6)},20)
+}
+function yamato21Fired(){
+document.images[0].src="yamato2fired.gif"
+ document.getElementById("score").innerHTML=Number(document.getElementById("score").innerHTML)+1
+}
+function esminets31Fired(){
+document.images[1].src="esminets3fired.gif"
+ document.getElementById("score").innerHTML=Number(document.getElementById("score").innerHTML)+1
+}
+function avianosets1Fired(){
+document.images[2].src="avianosets1fired.gif"
+ document.getElementById("score").innerHTML=Number(document.getElementById("score").innerHTML)+1
+}
+function esminets4Fired(){
+document.images[3].src="esminets4fired.gif"
+ document.getElementById("score").innerHTML=Number(document.getElementById("score").innerHTML)+1
+}
+function yamato22Fired(){
+document.images[4].src="yamato2fired.gif"
+ document.getElementById("score").innerHTML=Number(document.getElementById("score").innerHTML)+1
+}
+function esminets32Fired(){
+document.images[5].src="esminets3fired.gif"
+ document.getElementById("score").innerHTML=Number(document.getElementById("score").innerHTML)+1
+}
+var timeInSecs;
+var ticker;
+
+function startTimer(secs){
+timeInSecs = parseInt(secs)-1;
+ticker = setInterval("tick()",1000);   // every second
+}
+
+function tick() {
+var secs = timeInSecs;
+if (secs>0) {
+timeInSecs--;
+}
+else {
+clearInterval(ticker); // stop counting at zero
+document.getElementById("resetButton").disabled=false
+leaderBoard()
+// startTimer(60);  // remove forward slashes in front of startTimer to repeat if required
+}
+document.getElementById("countdown").innerHTML = secs;
+}
+
+function leaderBoard(){
+if (Number(document.getElementById("score").innerHTML)>Number(document.getElementById("leaderScore1").innerHTML)){
+document.getElementById("leaderNickname5").innerHTML=document.getElementById("leaderNickname4").innerHTML
+document.getElementById("leaderScore5").innerHTML=document.getElementById("leaderScore4").innerHTML
+document.getElementById("leaderNickname4").innerHTML=document.getElementById("leaderNickname3").innerHTML
+document.getElementById("leaderScore4").innerHTML=document.getElementById("leaderScore3").innerHTML
+document.getElementById("leaderNickname3").innerHTML=document.getElementById("leaderNickname2").innerHTML
+document.getElementById("leaderScore3").innerHTML=document.getElementById("leaderScore2").innerHTML
+document.getElementById("leaderNickname2").innerHTML=document.getElementById("leaderNickname1").innerHTML
+document.getElementById("leaderScore2").innerHTML=document.getElementById("leaderScore1").innerHTML
+document.getElementById("leaderNickname1").innerHTML=document.getElementById("nickname").value
+document.getElementById("leaderScore1").innerHTML=document.getElementById("score").innerHTML
+return
+}
+if (Number(document.getElementById("score").innerHTML)<=Number(document.getElementById("leaderScore1").innerHTML) && 
+Number(document.getElementById("score").innerHTML)>Number(document.getElementById("leaderScore2").innerHTML)){
+document.getElementById("leaderNickname5").innerHTML=document.getElementById("leaderNickname4").innerHTML
+document.getElementById("leaderScore5").innerHTML=document.getElementById("leaderScore4").innerHTML
+document.getElementById("leaderNickname4").innerHTML=document.getElementById("leaderNickname3").innerHTML
+document.getElementById("leaderScore4").innerHTML=document.getElementById("leaderScore3").innerHTML
+document.getElementById("leaderNickname3").innerHTML=document.getElementById("leaderNickname2").innerHTML
+document.getElementById("leaderScore3").innerHTML=document.getElementById("leaderScore2").innerHTML
+document.getElementById("leaderNickname2").innerHTML=document.getElementById("nickname").value
+document.getElementById("leaderScore2").innerHTML=document.getElementById("score").innerHTML
+return
+}
+if (Number(document.getElementById("score").innerHTML)<=Number(document.getElementById("leaderScore1").innerHTML) && 
+Number(document.getElementById("score").innerHTML)<=Number(document.getElementById("leaderScore2").innerHTML) &&
+Number(document.getElementById("score").innerHTML)>Number(document.getElementById("leaderScore3").innerHTML)){
+document.getElementById("leaderNickname5").innerHTML=document.getElementById("leaderNickname4").innerHTML
+document.getElementById("leaderScore5").innerHTML=document.getElementById("leaderScore4").innerHTML
+document.getElementById("leaderNickname4").innerHTML=document.getElementById("leaderNickname3").innerHTML
+document.getElementById("leaderScore4").innerHTML=document.getElementById("leaderScore3").innerHTML
+document.getElementById("leaderNickname3").innerHTML=document.getElementById("nickname").value
+document.getElementById("leaderScore3").innerHTML=document.getElementById("score").innerHTML
+return
+}
+if (Number(document.getElementById("score").innerHTML)<=Number(document.getElementById("leaderScore1").innerHTML) &&
+Number(document.getElementById("score").innerHTML)<=Number(document.getElementById("leaderScore2").innerHTML) &&
+Number(document.getElementById("score").innerHTML)<=Number(document.getElementById("leaderScore3").innerHTML) &&
+Number(document.getElementById("score").innerHTML)>Number(document.getElementById("leaderScore4").innerHTML)){
+document.getElementById("leaderNickname5").innerHTML=document.getElementById("leaderNickname4").innerHTML
+document.getElementById("leaderScore5").innerHTML=document.getElementById("leaderScore4").innerHTML
+document.getElementById("leaderNickname4").innerHTML=document.getElementById("nickname").value
+document.getElementById("leaderScore4").innerHTML=Number(document.getElementById("score").innerHTML)
+return
+}
+if (Number(document.getElementById("score").innerHTML)<=Number(document.getElementById("leaderScore1").innerHTML) &&
+Number(document.getElementById("score").innerHTML)<=Number(document.getElementById("leaderScore2").innerHTML) &&
+Number(document.getElementById("score").innerHTML)<=Number(document.getElementById("leaderScore3").innerHTML) &&
+Number(document.getElementById("score").innerHTML)<=Number(document.getElementById("leaderScore4").innerHTML) &&
+Number(document.getElementById("score").innerHTML)>Number(document.getElementById("leaderScore5").innerHTML)){
+document.getElementById("leaderNickname5").innerHTML=document.getElementById("nickname").value
+document.getElementById("leaderScore5").innerHTML=document.getElementById("score").innerHTML
+return
+}
+}
+function prepareToStart(secs){
+timeInSecs = parseInt(secs)-1;
+ticker = setInterval("tickBeforeStart()",1000);   // every second
+}
+
+function tickBeforeStart() {
+var secs = timeInSecs;
+if (secs>0) {
+timeInSecs--;
+}
+else {
+clearInterval(ticker); // stop counting at zero
+document.getElementById("score").innerHTML=0
+startTimer(60);  // remove forward slashes in front of startTimer to repeat if required
+}
+document.getElementById("prepareCountdown").innerHTML = secs;
+}
+function initial(){
+document.getElementById("startButton").disabled=true
+prepareToStart(5)
+}
+function reset(){
+document.getElementById("resetButton").disabled=true
+document.getElementById("startButton").disabled=false
+document.getElementById("prepareCountdown").innerHTML =5
+document.getElementById("countdown").innerHTML =60
+document.getElementById("score").innerHTML=0
+}
+</script>
+<div style="position:absolute; left:950px; top:5px">Shoot battleships!</div>
+<div style="position:absolute; left:930px; top:30px">Nickname: <input id="nickname" size="5" value="John"> 
+<input id="startButton" type="button" value="Start" onclick="initial()">
+<input id="resetButton" type="button" value="Reset" onclick="reset()" disabled></div>
+<div style="position:absolute; left:930px; top:55px">Prepare:</div>
+<div id="prepareCountdown" style="position:absolute; left:1000px; top:55px">5</div>
+<div style="position:absolute; left:930px; top:75px">Timer:</div>
+<div id="countdown" style="position:absolute; left:1000px; top:75px">60</div>
+<div style="position:absolute; left:930px; top:95px">Score:</div>
+<div id="score" style="position:absolute; left:1000px; top:95px">0</div>
+<div style="position:absolute; left:950px; top:115px"><b>Leaderboard</b></div>
+<div id="leaderNickname1" style="position:absolute; left:930px; top:135px">Player1</div>
+<div id="leaderScore1" style="position:absolute; left:1000px; top:135px">0</div>
+<div id="leaderNickname2" style="position:absolute; left:930px; top:155px">Player2</div>
+<div id="leaderScore2" style="position:absolute; left:1000px; top:155px">0</div>
+<div id="leaderNickname3" style="position:absolute; left:930px; top:175px">Player3</div>
+<div id="leaderScore3" style="position:absolute; left:1000px; top:175px">0</div>
+<div id="leaderNickname4" style="position:absolute; left:930px; top:195px">Player4</div>
+<div id="leaderScore4" style="position:absolute; left:1000px; top:195px">0</div>
+<div id="leaderNickname5" style="position:absolute; left:930px; top:215px">Player5</div>
+<div id="leaderScore5" style="position:absolute; left:1000px; top:215px">0</div>
+<!--avianosets1, esminets3, esminets4, yamato2, illum-circle-plex-->
+<div id="yamato21" style="position:absolute; left:20px; top:906px">
+ <image onclick="yamato21Fired()" src="yamato2.gif"/>
+</div>
+<div id="esminets31" style="position:absolute; left:150px; top:906px">
+<image onclick="esminets31Fired()" src="esminets3.gif"/>
+</div>
+<div id="avianosets1" style="position:absolute; left:280px; top:906px">
+<image onclick="avianosets1Fired()" src="avianosets1.gif"/>
+</div>
+<div id="esminets4" style="position:absolute; left:410px; top:906px">
+<image onclick="esminets4Fired()" src="esminets4.gif"/>
+</div>
+<div id="yamato22" style="position:absolute; left:540px; top:906px">
+<image onclick="yamato22Fired()" src="yamato2.gif"/>
+</div>
+<div id="esminets32" style="position:absolute; left:670px; top:906px">
+<image onclick="esminets32Fired()" src="esminets3.gif"/>
+</div>
+<div style="position:absolute; left:930px; top:235px">
+<a href="http://www.shipsim.com/products/shipsimulatorextremes">Play the real game!</a></div>
+<div style="position:absolute; left:830px; top:255px">
+<iframe width="420" height="315" src="https://www.youtube.com/embed/WVNdF15RZUc">
+</iframe></div>
+</body>
+</html>
